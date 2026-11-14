@@ -1,0 +1,9 @@
+# outros
+.vscode
+
+# build
+public/*
+
+# usado para manter pastas
+!.gitkeep
+
