@@ -16,6 +16,33 @@ document.body.appendChild(canvas);
 
 const rect = { x: canvas.width * .5, y: canvas.height * .8, width: 20, height: 10 };
 
+canvas.addEventListener('pointerdown', (event) => {
+    console.log(event);
+    rect.x = event.clientX;
+    rect.y = event.clientY;
+});
+
+canvas.addEventListener('pointerup', (event) => {
+    console.log(event);
+    rect.x = event.clientX;
+    rect.y = event.clientY;
+});
+
+canvas.addEventListener('pointerenter', (event) => {
+    console.log(event);
+    rect.x = event.clientX;
+    rect.y = event.clientY;
+});
+
+canvas.addEventListener('pointerout', (event) => {
+    console.log(event);
+    rect.x = event.clientX;
+    rect.y = event.clientY;
+});
+
+
+
+
 /**
  * @typedef {(timestamp: number) => void} HandleLoop
  */
