@@ -40,6 +40,11 @@ canvas.addEventListener('pointerout', (event) => {
     rect.y = event.clientY;
 });
 
+canvas.addEventListener('pointermove', (event) => {
+    console.log(event);
+    rect.x = event.clientX;
+    rect.y = event.clientY;
+});
 
 
 
