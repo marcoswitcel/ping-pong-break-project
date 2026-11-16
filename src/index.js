@@ -1,7 +1,11 @@
+import { drawRect } from './render.js';
 
 console.log('Olá mundo do Ping Pong Breaker Project');
 
 const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+
+if (!ctx) throw new Error('ctx não criado com sucesso!');
 
 canvas.classList.add('canvas-display');
 
@@ -10,8 +14,15 @@ canvas.height = window.innerHeight;
 
 document.body.appendChild(canvas);
 
+/**
+ * @typedef {(timestamp: number) => void} HandleLoop
+ */
+
 class AppLoop {
     handleId = 0;
+    /**
+     * @type {HandleLoop[]}
+     */
     handles = [];
 
     start() {
@@ -20,6 +31,10 @@ class AppLoop {
         }
     }
 
+    /**
+     * @private 
+     * @param {number} timestamp 
+     */
     handleLoop = (timestamp) => {
         for (const handle of this.handles) {
             try {
@@ -32,15 +47,19 @@ class AppLoop {
         this.handleId = requestAnimationFrame(this.handleLoop)
     }
     
-    add(handle) {
-        this.handles.push(handle);
+    /**
+     * 
+     * @param {HandleLoop} handler 
+     */
+    add(handler) {
+        this.handles.push(handler);
     }
 }
 
 const appLoop = new AppLoop();
 
 appLoop.add((timestamp) => {
-    
+    drawRect(ctx, 0, 0, ctx.canvas.width, ctx.canvas.height, 'blue');
 })
 
 appLoop.start();
