@@ -14,6 +14,8 @@ canvas.height = window.innerHeight;
 
 document.body.appendChild(canvas);
 
+const rect = { x: canvas.width * .5, y: canvas.height * .8, width: 20, height: 10 };
+
 /**
  * @typedef {(timestamp: number) => void} HandleLoop
  */
@@ -59,7 +61,11 @@ class AppLoop {
 const appLoop = new AppLoop();
 
 appLoop.add((timestamp) => {
+    // background
     drawRect(ctx, 0, 0, ctx.canvas.width, ctx.canvas.height, 'blue');
+
+    // paddle
+    drawRect(ctx, rect.x, rect.y, rect.width, rect.height, 'white');
 })
 
 appLoop.start();
