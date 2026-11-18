@@ -45,17 +45,12 @@ canvas.addEventListener('pointermove', (event) => {
 });
 
 
+type HandleLoop = (timestamp: number) => void; 
 
-/**
- * @typedef {(timestamp: number) => void} HandleLoop
- */
 
 class AppLoop {
     handleId = 0;
-    /**
-     * @type {HandleLoop[]}
-     */
-    handles = [];
+    handles: HandleLoop[]  = [];
 
     start() {
         if (this.handleId === 0) {
@@ -63,11 +58,10 @@ class AppLoop {
         }
     }
 
-    /**
-     * @private 
-     * @param {number} timestamp 
+    /** 
+     * @param timestamp 
      */
-    handleLoop = (timestamp) => {
+    private handleLoop = (timestamp: number) => {
         for (const handle of this.handles) {
             try {
                 handle(timestamp)
@@ -81,16 +75,16 @@ class AppLoop {
     
     /**
      * 
-     * @param {HandleLoop} handler 
+     * @param handler 
      */
-    add(handler) {
+    add(handler: HandleLoop) {
         this.handles.push(handler);
     }
 }
 
 const appLoop = new AppLoop();
 
-appLoop.add((timestamp) => {
+appLoop.add((timestamp: number) => {
     // update
     rect.x = point.x;
     rect.y = point.y - marginY;

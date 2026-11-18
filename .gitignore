@@ -1,6 +1,9 @@
 # outros
 .vscode
 
+# dependências
+node_modules
+
 # build
 public/*
 

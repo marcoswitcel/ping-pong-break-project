@@ -1,0 +1,15 @@
+{
+  "name": "ping-pong-break-project",
+  "version": "1.0.0",
+  "description": "Projeto de jogos de Ping Pong Break",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "dev": "tsc -w"
+  },
+  "author": "João Witcel",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
+}
