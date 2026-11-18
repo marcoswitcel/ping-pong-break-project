@@ -14,36 +14,34 @@ canvas.height = window.innerHeight;
 
 document.body.appendChild(canvas);
 
-const rect = { x: canvas.width * .5, y: canvas.height * .8, width: 20, height: 10 };
+const rect = { x: canvas.width * .5, y: canvas.height * .8, width: canvas.width * .10, height: canvas.width * .03 };
+const point = { x: 0, y: 0, };
+
+const marginY = canvas.height * .08;
 
 canvas.addEventListener('pointerdown', (event) => {
-    console.log(event);
-    rect.x = event.clientX;
-    rect.y = event.clientY;
+    point.x = event.clientX;
+    point.y = event.clientY;
 });
 
 canvas.addEventListener('pointerup', (event) => {
-    console.log(event);
-    rect.x = event.clientX;
-    rect.y = event.clientY;
+    point.x = event.clientX;
+    point.y = event.clientY;
 });
 
 canvas.addEventListener('pointerenter', (event) => {
-    console.log(event);
-    rect.x = event.clientX;
-    rect.y = event.clientY;
+    point.x = event.clientX;
+    point.y = event.clientY;
 });
 
 canvas.addEventListener('pointerout', (event) => {
-    console.log(event);
-    rect.x = event.clientX;
-    rect.y = event.clientY;
+    point.x = event.clientX;
+    point.y = event.clientY;
 });
 
 canvas.addEventListener('pointermove', (event) => {
-    console.log(event);
-    rect.x = event.clientX;
-    rect.y = event.clientY;
+    point.x = event.clientX;
+    point.y = event.clientY;
 });
 
 
@@ -93,11 +91,15 @@ class AppLoop {
 const appLoop = new AppLoop();
 
 appLoop.add((timestamp) => {
+    // update
+    rect.x = point.x;
+    rect.y = point.y - marginY;
+    
     // background
     drawRect(ctx, 0, 0, ctx.canvas.width, ctx.canvas.height, 'blue');
 
-    // paddle
-    drawRect(ctx, rect.x, rect.y, rect.width, rect.height, 'white');
+    // paddle (renderiza centralizado)
+    drawRect(ctx, rect.x - rect.width / 2, rect.y - rect.height / 2, rect.width, rect.height, 'white');
 })
 
 appLoop.start();
