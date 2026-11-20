@@ -73,8 +73,9 @@ class AppLoop {
      * @param timestamp 
      */
     private handleLoop = (timestamp: number) => {
-        for (const handle of this.handles) {
+        for (let i = 0; i < this.handles.length; i++) {
             try {
+                const handle = this.handles[i];
                 handle(timestamp)
             } catch (ex) {
                 console.error('Erro no handler', ex);
