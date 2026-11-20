@@ -1,3 +1,4 @@
+import { AppLoop } from './app-loop.js';
 import { drawRect, drawText } from './render.js';
 
 console.log('Olá mundo do Ping Pong Breaker Project');
@@ -56,47 +57,9 @@ canvas.addEventListener('pointermove', (event) => {
 });
 
 
-type HandleLoop = (timestamp: number) => void; 
-
-
-class AppLoop {
-    handleId = 0;
-    handles: HandleLoop[]  = [];
-
-    start() {
-        if (this.handleId === 0) {
-            this.handleId = requestAnimationFrame(this.handleLoop)
-        }
-    }
-
-    /** 
-     * @param timestamp 
-     */
-    private handleLoop = (timestamp: number) => {
-        for (let i = 0; i < this.handles.length; i++) {
-            try {
-                const handle = this.handles[i];
-                handle(timestamp)
-            } catch (ex) {
-                console.error('Erro no handler', ex);
-            }
-        }
-
-        this.handleId = requestAnimationFrame(this.handleLoop)
-    }
-    
-    /**
-     * 
-     * @param handler 
-     */
-    add(handler: HandleLoop) {
-        this.handles.push(handler);
-    }
-}
-
 const appLoop = new AppLoop();
 
-appLoop.add((timestamp: number) => {
+appLoop.add((timestamp: number, deltaTime: number) => {
     // update
     rect.x = point.x;
     rect.y = point.y - marginY;
