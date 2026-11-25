@@ -41,7 +41,7 @@ export class AppLoop {
     for (let i = 0; i < this.handles.length; i++) {
       try {
         const handle = this.handles[i];
-        console.log(currentTimestamp, currentDt)
+        
         handle(currentTimestamp, currentDt);
       } catch (ex) {
         console.error('Erro no handler', ex);
