@@ -21,3 +21,24 @@ export function createCanvas(width: number, height: number, appendTo?: HTMLEleme
 
   return canvas;
 }
+
+/**
+ * @note um detalhe interessante dessa implementação é que na verdade quando o usuário está com
+ * zoom aplicado à página, o cheque lógico abaixo não produz o resultado correto. Por isso adicionei
+ * o atributo depreciado do documento `document.fullscreen` ao cheque, quando presente ele será
+ * mais confiável.
+ * 
+ * @returns booleano indicando se está ou não em modo 'fullscreen'
+ */
+export function isFullScreen(): boolean {
+  return document.fullscreen || (document.fullscreenElement != null) || (window.innerWidth == screen.width && window.innerHeight == screen.height);
+}
+
+/**
+ * se é um userAgent normalmente usado em dispositivos 'mobile'
+ * @returns se é ou não mobile
+ */
+export function isMobileBrowser(): boolean {
+  const userAgentsKnownToBeMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  return userAgentsKnownToBeMobile.test(navigator.userAgent);
+}
