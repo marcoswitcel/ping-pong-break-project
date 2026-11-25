@@ -1,5 +1,8 @@
 import { AppLoop } from './app-loop.js';
 import { drawRect, drawText } from './render.js';
+import { isFullScreen } from './utils.js';
+
+const FULL_SCREEN_CLASS_NAME = 'fullscreen-mode';
 
 export const makeDefaultApp = (canvas: HTMLCanvasElement): AppLoop => {
   const ctx = canvas.getContext('2d');
@@ -46,6 +49,29 @@ export const makeDefaultApp = (canvas: HTMLCanvasElement): AppLoop => {
 
     point.x = event.clientX;
     point.y = event.clientY;
+  });
+
+  canvas.addEventListener('dblclick', () => {
+    if (isFullScreen()) {
+      document.body.classList.remove(FULL_SCREEN_CLASS_NAME);
+      document.exitFullscreen();
+    } else {
+      document.body.classList.add(FULL_SCREEN_CLASS_NAME);
+      document.body.requestFullscreen();
+    }
+  });
+
+  document.addEventListener('fullscreenchange', () => {
+    if (isFullScreen()) {
+      document.body.classList.add(FULL_SCREEN_CLASS_NAME);
+    } else {
+      document.body.classList.remove(FULL_SCREEN_CLASS_NAME);
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   });
   
   
