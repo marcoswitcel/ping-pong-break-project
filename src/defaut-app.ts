@@ -16,6 +16,9 @@ export const makeDefaultApp = (canvas: HTMLCanvasElement): AppLoop => {
   
   const appLoop = new AppLoop();
 
+  // @todo João, preciso implementar um classe para gerenciar o input da tela touch, tipo um 'touchController'
+  // isso para normalizar multiplos toques simultâneos e padrozinar o pointer event no navegador...
+
   canvas.addEventListener('pointerdown', (event) => {
     isUserInteractionRegistered = true;
 
