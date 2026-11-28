@@ -4,8 +4,8 @@
     "start_url": "./",
     "description": "Ping Pong Breaker desenvolvido por João Marcos",
     "display": "standalone",
-    "background_color": "white",
-    "theme_color": "white",
+    "background_color": "blue",
+    "theme_color": "blue",
     "icons": [
         {
             "src": "./assets/android-chrome-192x192.png",

@@ -90,7 +90,7 @@ export const makeDefaultApp = (canvas: HTMLCanvasElement): AppLoop => {
     }
     else
     {
-      drawText(ctx, 'Por favor, toque na tela', 250, 250, 24);
+      drawText(ctx, 'Por favor, toque na tela', 250, 250, 18);
     }
   })
 
